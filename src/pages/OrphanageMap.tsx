@@ -1,22 +1,20 @@
 import React from "react";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 
 import { Feather } from "@expo/vector-icons";
 import mapMarker from "../images/map-marker.png";
 import { useNavigation } from "@react-navigation/native";
+import { RectButton } from "react-native-gesture-handler";
 
 export default function OrphanageMap() {
   const navigation = useNavigation();
   function handleNavigateToOrphanageDetails() {
     navigation.navigate("OrphanageDetails");
+  }
+  function handleNavigateToSelectMapPosition() {
+    navigation.navigate("SelectMapPosition");
   }
   return (
     <View style={styles.container}>
@@ -41,10 +39,7 @@ export default function OrphanageMap() {
             longitude: -37.0735264,
           }}
         >
-          <Callout
-            tooltip
-            onPress={handleNavigateToOrphanageDetails}
-          >
+          <Callout tooltip onPress={handleNavigateToOrphanageDetails}>
             <View style={styles.calloutContainer}>
               <Text style={styles.calloutText}>Orfanato da Rocketseat</Text>
             </View>
@@ -53,12 +48,12 @@ export default function OrphanageMap() {
       </MapView>
       <View style={styles.footer}>
         <Text style={styles.footerText}>2 orfanatos encontrados</Text>
-        <TouchableOpacity
+        <RectButton
           style={styles.createOrphanageButton}
-          onPress={() => {}}
+          onPress={handleNavigateToSelectMapPosition}
         >
           <Feather name="plus" size={20} color={"#111"} />
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </View>
   );
@@ -76,7 +71,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 46,
     paddingHorizontal: 16,
-    backgroundColor: "rgba(255,255,255,0.8)",
+    backgroundColor: "rgba(255,255,254,0.8)",
     borderRadius: 16,
     justifyContent: "center",
   },
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#FFF",
     borderRadius: 20,
-    height: 46,
+    height: 64,
     paddingLeft: 24,
 
     flexDirection: "row",

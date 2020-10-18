@@ -8,7 +8,7 @@ import {
   Nunito_800ExtraBold,
 } from "@expo-google-fonts/nunito";
 
-import Routes from './src/routes'
+import Routes from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +19,5 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
-  return (
-    <Routes/>
-  );
+  return <Routes />;
 }
